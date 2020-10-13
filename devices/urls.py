@@ -15,21 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from . import views
+from django.conf import settings
 
+app_name = 'devices'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
-    # Devices URLs
-    path('devices/', include('devices.urls')),
-    # Templates URLs
-    path('templates/', include('templates.urls')),
-    # Provisioning URLs
-    path('provisioning/', include('provisioning.urls')),
-    # Tools URLS
-    path('tools/', include('tools.urls')),
-    # Reports URLs
-    path('reports/', include('reports.urls')),
-    # Settings URLs
-    path('settings/', include('settings.urls')),
+    path('', views.all_devices, name="all_devices"),
+    path('add/', views.add_device, name="add_device"),
+    path('discover/', views.discover_devices, name="discover_devices"),
+    path('manage/', views.manage_devices, name="manage_device"),
 ]
