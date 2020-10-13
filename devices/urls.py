@@ -23,6 +23,7 @@ app_name = 'devices'
 
 urlpatterns = [
     path('', views.all_devices, name="all_devices"),
+    path('device/<int:device_pk>/', views.device_details, name='device_details'),
     path('add/', views.add_device, name="add_device"),
     path('discover/', views.discover_devices, name="discover_devices"),
     path('manage/', views.manage_devices, name="manage_device"),

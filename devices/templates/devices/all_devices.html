@@ -7,7 +7,7 @@
     <br><br>
     <h5>Devices</h5>
     {% for device in devices %}
-        <a href="">{{ device.seed_host_or_ip }}</a><br>
+        <a href="{% url 'devices:device_details' device.id %}">{{ device.seed_host_or_ip }}</a><br>
     {% endfor %}
     <br><br>
     <h5>Credentials</h5>

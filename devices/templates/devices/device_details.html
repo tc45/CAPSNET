@@ -1,0 +1,13 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Device Details - {{ device.seed_host_or_ip }}{% endblock %}
+
+{% block content %}
+    <h3>{{ device.seed_host_or_ip }}</h3>
+    {{ device.hostname }}<br>
+    {{ device.vendor }}<br>
+    {{ device.model }}<br>
+    {{ device.software }}<br>
+    {{ device.device_type }}
+
+{% endblock %}
