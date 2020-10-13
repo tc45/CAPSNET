@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from .models import Device
+from settings.models import Credential
 
 # Create your views here.\
 
 
 def all_devices(request):
-    return render(request, "devices/all_devices.html")
+    devices = Device.objects.all()
+    credentials = Credential.objects.all()
+    return render(request, "devices/all_devices.html", {'devices': devices, 'credentials': credentials})
 
 
 def add_device(request):

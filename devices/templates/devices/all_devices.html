@@ -3,6 +3,16 @@
     {% block title %}CAPSNET - Devices home{% endblock %}
 
 {% block content %}
-Devices home
+    <h3>Devices home</h3>
+    <br><br>
+    <h5>Devices</h5>
+    {% for device in devices %}
+        <a href="">{{ device.seed_host_or_ip }}</a><br>
+    {% endfor %}
+    <br><br>
+    <h5>Credentials</h5>
+    {% for credential in credentials %}
+        <a href="">{{ credential.username }}/{{ credential.password }}</a><br>
+    {% endfor %}
 
 {% endblock %}
