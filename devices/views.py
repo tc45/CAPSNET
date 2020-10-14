@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Device
-from settings.models import Credential
+from appsettings.models import Credential
 
 # Create your views here.\
 

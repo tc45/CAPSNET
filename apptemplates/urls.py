@@ -21,6 +21,8 @@ from django.conf import settings
 
 app_name = 'templates'
 
+
+
 urlpatterns = [
     path('', views.templates_home, name="templates_home"),
 ]

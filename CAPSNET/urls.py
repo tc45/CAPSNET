@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+admin.site.site_header = "CAPSNET - Admin Portal"
+admin.site.site_title = "CAPSNET - Admin Portal"
+admin.site.index_title = "Admin Page"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -25,7 +29,7 @@ urlpatterns = [
     # Devices URLs
     path('devices/', include('devices.urls')),
     # Templates URLs
-    path('templates/', include('templates.urls')),
+    path('templates/', include('apptemplates.urls')),
     # Provisioning URLs
     path('provisioning/', include('provisioning.urls')),
     # Tools URLS
@@ -33,5 +37,5 @@ urlpatterns = [
     # Reports URLs
     path('reports/', include('reports.urls')),
     # Settings URLs
-    path('settings/', include('settings.urls')),
+    path('settings/', include('appsettings.urls')),
 ]
