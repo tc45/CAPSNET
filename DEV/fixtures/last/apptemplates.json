@@ -1,0 +1,64 @@
+[
+{
+    "model": "apptemplates.templategroup",
+    "pk": 1,
+    "fields": {
+        "group": "VPN",
+        "description": "VPN Templates",
+        "deleted": false
+    }
+},
+{
+    "model": "apptemplates.templategroup",
+    "pk": 2,
+    "fields": {
+        "group": "Router",
+        "description": "Router templates",
+        "deleted": false
+    }
+},
+{
+    "model": "apptemplates.templategroup",
+    "pk": 3,
+    "fields": {
+        "group": "Switch",
+        "description": "Switch templates",
+        "deleted": false
+    }
+},
+{
+    "model": "apptemplates.templategroup",
+    "pk": 4,
+    "fields": {
+        "group": "Global",
+        "description": "Global Templates",
+        "deleted": false
+    }
+},
+{
+    "model": "apptemplates.template",
+    "pk": 1,
+    "fields": {
+        "name": "BASE_B2B_PEER_REVIEW",
+        "description": "B2B Peer Review template for VPN configuration",
+        "group": 1,
+        "body": "B2B VPN Peer Review Output for {{CUSTOMER_NAME}}\r\nCustomer Contact Info: {{CUSTOMER_CONTACT}}\r\n \r\n------------------------  VPN General Details  -----------------------\r\nVPN Topology: {{VPN_TOPOLOGY}}\r\n\r\n\r\n{%- if VPN_TOPOLOGY == \"Single-Homed\" %}\r\n\r\nVPNGW 1.1.1.1\r\n      1.1.1.1 Peering with Customer VPNGW {{CUST_VPN_GW_1}}\r\n{%- if CUST_VPN_GW_2 is defined%}\r\n      1.1.1.2 Peering with Customer VPNGW {{CUST_VPN_GW_2}}\r\n{% endif %}\r\n{%- endif %}\r\n{%- if VPN_TOPOLOGY == \"Multi-Homed\" %}\r\nHOST VPNGW 1.1.1.1\r\n         1.1.1.1 Peering with Customer VPNGW {{CUST_VPN_GW_1}}\r\n{%- if CUST_VPN_GW_2 is defined %}\r\n         1.1.1.1 Peering with Customer VPNGW {{CUST_VPN_GW_2}}\r\nHOST VPNGW 1.1.1.2\r\n         1.1.1.2 Peering with Customer VPNGW {{CUST_VPN_GW_1}}\r\n{%- if CUST_VPN_GW_2 is defined %}\r\n         1.1.1.2 Peering with Customer VPNGW {{CUST_VPN_GW_2}}\r\n{%- endif %}\r\n{%- endif %}\r\n{%- endif %}\r\n\r\nASA VPN Sequence Number: {{VPN_SEQ_NUMBER}}\r\nPhase 1 Protocol: {{VPN_PHASE1}}\r\nPhase 2 Protocol: {{VPN_PHASE2}}\r\nPre-Shared Key: {{VPN_PSK}}\r\n\r\n------------------------  VPN Traffic Details  -----------------------\r\nInteresting Networks\r\n{{HOST_INTERESTING_CIDR_1}}  <-------->   {{CUST_INTERESTING_CIDR_1}}\r\n{%- if CUST_INTERESTING_CIDR_2 is defined %}\r\n{{HOST_INTERESTING_CIDR_2}}  <-------->   {{CUST_INTERESTING_CIDR_2}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_3 is defined %}\r\n{{HOST_INTERESTING_CIDR_3}}  <-------->   {{CUST_INTERESTING_CIDR_3}}\r\n{%- endif %}\r\n\r\n{%- if CUST_INTERESTING_CIDR_4 is defined %}\r\n{{HOST_INTERESTING_CIDR_4}}  <-------->   {{CUST_INTERESTING_CIDR_4}}\r\n{%- endif %}\r\n\r\n{%- if CUST_INTERESTING_CIDR_5 is defined %}\r\n{{HOST_INTERESTING_CIDR_5}}  <-------->   {{CUST_INTERESTING_CIDR_5}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_6 is defined %}\r\n{{HOST_INTERESTING_CIDR_6}}  <-------->   {{CUST_INTERESTING_CIDR_6}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_7 is defined %}\r\n{{HOST_INTERESTING_CIDR_7}}  <-------->   {{CUST_INTERESTING_CIDR_7}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_8 is defined %}\r\n{{HOST_INTERESTING_CIDR_8}}  <-------->   {{CUST_INTERESTING_CIDR_8}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_9 is defined %}\r\n{{HOST_INTERESTING_CIDR_9}}  <-------->   {{CUST_INTERESTING_CIDR_9}}\r\n{%- endif %}\r\n{%- if CUST_INTERESTING_CIDR_10 is defined %}\r\n{{HOST_INTERESTING_CIDR_10}}  <-------->   {{CUST_INTERESTING_CIDR_10}}\r\n{%- endif %}",
+        "date_added": "2020-10-14T22:05:44.001Z",
+        "date_changed": null,
+        "deleted": false
+    }
+},
+{
+    "model": "apptemplates.template",
+    "pk": 2,
+    "fields": {
+        "name": "BASE_B2B_VPN_HOST_CISCO",
+        "description": "B2B VPN Template for Cisco ASA",
+        "group": 1,
+        "body": "! Config for B2B VPN for Customer {{CUSTOMER_NAME}}\r\n!\r\n!\r\naccess-list Outside_cryptomap_{{VPN_SEQ_NUMBER}}_{{CUSTOMER_NAME_ACL}}_VPN remark {{CUSTOMER_NAME}} - {{CUSTOMER_CONTACT}}\r\n{%- if HOST_INTERESTING_CIDR_1 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_1_IP}} {{HOST_INTERESTING_CIDR_1_WILDCARD}} {{CUST_INTERESTING_CIDR_1_IP}} {{CUST_INTERESTING_CIDR_1_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_2 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_2_IP}} {{HOST_INTERESTING_CIDR_2_WILDCARD}} {{CUST_INTERESTING_CIDR_2_IP}} {{CUST_INTERESTING_CIDR_2_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_3 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_3_IP}} {{HOST_INTERESTING_CIDR_3_WILDCARD}} {{CUST_INTERESTING_CIDR_3_IP}} {{CUST_INTERESTING_CIDR_3_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_4 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_4_IP}} {{HOST_INTERESTING_CIDR_4_WILDCARD}} {{CUST_INTERESTING_CIDR_4_IP}} {{CUST_INTERESTING_CIDR_4_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_5 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_5_IP}} {{HOST_INTERESTING_CIDR_5_WILDCARD}} {{CUST_INTERESTING_CIDR_5_IP}} {{CUST_INTERESTING_CIDR_5_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_6 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_6_IP}} {{HOST_INTERESTING_CIDR_6_WILDCARD}} {{CUST_INTERESTING_CIDR_6_IP}} {{CUST_INTERESTING_CIDR_6_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_7 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_7_IP}} {{HOST_INTERESTING_CIDR_7_WILDCARD}} {{CUST_INTERESTING_CIDR_7_IP}} {{CUST_INTERESTING_CIDR_7_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_8 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_8_IP}} {{HOST_INTERESTING_CIDR_8_WILDCARD}} {{CUST_INTERESTING_CIDR_8_IP}} {{CUST_INTERESTING_CIDR_8_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_9 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_9_IP}} {{HOST_INTERESTING_CIDR_9_WILDCARD}} {{CUST_INTERESTING_CIDR_9_IP}} {{CUST_INTERESTING_CIDR_9_WILDCARD}}\r\n{%- endif %}\r\n{%- if HOST_INTERESTING_CIDR_10 is defined %}\r\npermit ip {{HOST_INTERESTING_CIDR_10_IP}} {{HOST_INTERESTING_CIDR_10_WILDCARD}} {{CUST_INTERESTING_CIDR_10_IP}} {{CUST_INTERESTING_CIDR_10_WILDCARD}}\r\n{%- endif %}\r\n!\r\n{%- if VPN_TOPOLOGY == \"Single-Homed\" %}\r\ntunnel-group {{CUST_VPN_GW_1}} type ipsec-l2l\r\ntunnel-group {{CUST_VPN_GW_1}} ipsec-attributes\r\n {{VPN_PHASE1}} pre-shared-key {{VPN_PSK}}\r\n isakmp keepalive threshold 3600 retry 2\r\n!\r\n{% if CUST_VPN_GW_2 is defined %}\r\ntunnel-group {{CUST_VPN_GW_2}} type ipsec-l2l\r\ntunnel-group {{CUST_VPN_GW_2}} ipsec-attributes\r\n {{VPN_PHASE1}} pre-shared-key {{VPN_PSK}}\r\n isakmp keepalive threshold 3600 retry 2\r\n!\r\n{%- endif %}\r\n{%- endif %}\r\n\r\n{%- if VPN_TOPOLOGY == \"Multi-Homed\"%}\r\ntunnel-group {{CUST_VPN_GW_1}} type ipsec-l2l\r\ntunnel-group {{CUST_VPN_GW_1}} ipsec-attributes\r\n {{VPN_PHASE1}} pre-shared-key {{VPN_PSK}}\r\n isakmp keepalive threshold 3600 retry 2\r\n!\r\n{%- endif %}\r\n!\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} match address Outside_cryptomap_{{VPN_SEQ_NUMBER}}_{{CUSTOMER_NAME_ACL}}_VPN\r\n{%- if VPN_TOPOLOGY == \"Singe-Homed\" %}\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set peer {{CUSTOMER_VPNGW_1}}\r\n{%- if CUSTOMER_VPNGW_2 is defined %}\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set peer {{CUSTOMER_VPNGW_2}}\r\n{% endif %}\r\n{% endif %}\r\n{%- if VPN_TOPOLOGY == \"Multi-Homed\" %}\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set peer {{CUSTOMER_VPNGW_1}}\r\n{%- endif %}\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set {{VPN_PHASE1}} transform-set {{VPN_PHASE2}}\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set security-association lifetime seconds 28800\r\ncrypto map Outside_map {{VPN_SEQ_NUMBER}} set nat-t-disable\r\n!",
+        "date_added": "2020-10-14T22:05:55.256Z",
+        "date_changed": null,
+        "deleted": false
+    }
+}
+]

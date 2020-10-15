@@ -1,0 +1,136 @@
+[
+{
+    "model": "devices.connectionprotocol",
+    "pk": 1,
+    "fields": {
+        "protocol_name": "SSH",
+        "protocol_port": 22,
+        "description": null
+    }
+},
+{
+    "model": "devices.connectionprotocol",
+    "pk": 2,
+    "fields": {
+        "protocol_name": "Telnet",
+        "protocol_port": 23,
+        "description": null
+    }
+},
+{
+    "model": "devices.device",
+    "pk": 1,
+    "fields": {
+        "created": "2020-10-14T22:06:48.212Z",
+        "changed": "2020-10-14T22:06:48.212Z",
+        "enable": true,
+        "managementip": "1.1.1.1",
+        "hostname": "router1",
+        "domain_name": "router1.capsnet.local",
+        "vendor": "Cisco",
+        "model": "ISR4431",
+        "software": "isr4431.bin",
+        "software_filename": "isr4331_x_long.bin",
+        "device_type": "Router",
+        "connection_protocol": 1,
+        "preferred_credentials": 1,
+        "stack": false
+    }
+},
+{
+    "model": "devices.device",
+    "pk": 2,
+    "fields": {
+        "created": "2020-10-14T22:07:09.530Z",
+        "changed": "2020-10-14T22:07:09.530Z",
+        "enable": true,
+        "managementip": "1.1.1.2",
+        "hostname": "switch1",
+        "domain_name": "switch1.capsnet.local",
+        "vendor": "Cisco",
+        "model": "9200",
+        "software": "iosxe-9200.bin",
+        "software_filename": "iosxe_9200_x_long.bin",
+        "device_type": "Switch",
+        "connection_protocol": 2,
+        "preferred_credentials": 1,
+        "stack": false
+    }
+},
+{
+    "model": "devices.vrf",
+    "pk": 1,
+    "fields": {
+        "created": "2020-10-14T22:07:15.874Z",
+        "changed": "2020-10-14T22:07:15.874Z",
+        "vrf_name": "Global",
+        "device": 1
+    }
+},
+{
+    "model": "devices.vrf",
+    "pk": 2,
+    "fields": {
+        "created": "2020-10-14T22:07:20.344Z",
+        "changed": "2020-10-14T22:07:20.344Z",
+        "vrf_name": "MGMT",
+        "device": 1
+    }
+},
+{
+    "model": "devices.vrf",
+    "pk": 3,
+    "fields": {
+        "created": "2020-10-14T22:07:24.173Z",
+        "changed": "2020-10-14T22:07:24.173Z",
+        "vrf_name": "Global",
+        "device": 2
+    }
+},
+{
+    "model": "devices.vrf",
+    "pk": 4,
+    "fields": {
+        "created": "2020-10-14T22:07:27.111Z",
+        "changed": "2020-10-14T22:07:27.111Z",
+        "vrf_name": "MGMT",
+        "device": 2
+    }
+},
+{
+    "model": "devices.interfacedetail",
+    "pk": 1,
+    "fields": {
+        "created": "2020-10-14T22:07:37.680Z",
+        "changed": "2020-10-14T22:07:37.680Z",
+        "interface": "GigabitEthernet0/0",
+        "interface_short": "Gig0/0",
+        "vrf_member": 1,
+        "device": 1
+    }
+},
+{
+    "model": "devices.interfacedetail",
+    "pk": 2,
+    "fields": {
+        "created": "2020-10-14T22:07:46.989Z",
+        "changed": "2020-10-14T22:07:46.989Z",
+        "interface": "GigabitEthernet0/0",
+        "interface_short": "mgmt0",
+        "vrf_member": 4,
+        "device": 2
+    }
+},
+{
+    "model": "devices.interfacedetail",
+    "pk": 3,
+    "fields": {
+        "created": "2020-10-14T22:07:55.450Z",
+        "changed": "2020-10-14T22:07:55.450Z",
+        "interface": "GigabitEthernet0/0",
+        "interface_short": "Gig0/0",
+        "vrf_member": 3,
+        "device": 2
+    }
+}
+]
