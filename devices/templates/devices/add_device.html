@@ -1,0 +1,78 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="{% static 'dashboard/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Device Details - {{ device.common_name }}{% endblock %}
+
+{% block content %}
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+
+    <!-- Card Body -->
+    <div class="card-body">
+
+        <div class="col-8 col-xl-10">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Add new Device</h5>
+                    <h6 class="card-subtitle text-muted">Add device to seed for discovery.</h6>
+                </div>
+                <div class="card-body">
+                    <form action = "" method = "POST">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-sm-right">Hostname</label>
+                            <div class="col-sm-6">
+                                <input id="hostname" type="form-control" class="form-control" placeholder="Hostname">
+                            </div>
+                        </div>
+                        <div><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;OR</h4></div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2 text-sm-right">Management IP</label>
+                            <div class="col-sm-6">
+                                <input id="management_ip" type="form-control" class="form-control" placeholder="IPv4 address">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="credentials">Credentials (Leave blank to scan all)</label>
+                            <div class="col-sm-6">
+                            <select id="credentials" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-10 ml-sm-auto">
+                                <button type="submit" class="btn btn-primary">Add Device</button>
+                                <button type="button" class="btn btn-primary" onClick="window.location.href='{% url 'devices:all_devices' %}';">Cancel</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+            <a href="{% url 'devices:all_devices' %}">  Back to All Devices</a>
+
+
+
+
+{% endblock %}

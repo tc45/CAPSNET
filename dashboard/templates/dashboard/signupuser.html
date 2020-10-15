@@ -1,0 +1,39 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+
+    <!-- Card Body -->
+    <div class="card-body">
+
+        <div class="col-12 col-xl-16">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">New User</h5>
+                    <h6 class="card-subtitle text-muted">Enter your information to create a new account.</h6>
+                </div>
+                <div class="card-body">
+                    <h2>{{ error }}</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+            <a href="{% url 'devices:all_devices' %}">  Back to All Devices</a>
+
+
+
+
+{% endblock %}

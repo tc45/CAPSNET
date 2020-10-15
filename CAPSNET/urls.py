@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from dashboard import views as dashboard_views
 
 admin.site.site_header = "CAPSNET - Admin Portal"
 admin.site.site_title = "CAPSNET - Admin Portal"
@@ -23,6 +23,9 @@ admin.site.index_title = "Admin Page"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    #Auth
+    path('signup/', dashboard_views.signupuser, name="signupuser"),
 
     # API URLs
     path('api/', include('API.urls')),

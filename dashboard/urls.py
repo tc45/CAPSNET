@@ -23,4 +23,5 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
+    path('ui-alerts/', views.uialerts, name="uialerts"),
 ]

@@ -1,0 +1,24 @@
+{% extends "dashboard/base.html" %}
+
+<!-- Add page specific stylesheets -->
+{% block stylesets %}
+
+{% endblock %}
+
+<!-- Add page specific title -->
+{% block title %}
+    CAPSNET - Admin home
+{% endblock %}
+
+<!-- Add main content -->
+{% block content %}
+Admin home
+    <br>
+    <a href="{% url 'dashboard:admin' %}">Django Admin</a>"
+
+{% endblock %}
+
+<!-- Add page specific custom scripts -->
+{% block scripts %}
+
+{% endblock %}

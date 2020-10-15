@@ -26,5 +26,5 @@ urlpatterns = [
     path('device/<int:device_pk>/', views.device_details, name='device_details'),
     path('add/', views.add_device, name="add_device"),
     path('discover/', views.discover_devices, name="discover_devices"),
-    path('manage/', views.manage_devices, name="manage_device"),
+    path('manage/', views.manage_devices, name="manage_devices"),
 ]
