@@ -1,5 +1,11 @@
 {% extends "dashboard/base.html" %}
 
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block title %}Device Details - {{ device.management_ip }}{% endblock %}
 
 {% block content %}
@@ -14,14 +20,13 @@
           <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-          <div class="dropdown-header">Device Actions:</div>
-            <a class="dropdown-item" href="#">Add Device</a>
-            <a class="dropdown-item" href="#">Device Discovery</a>
-            <a class="dropdown-item" href="#">Manage Devices</a>
+          <div class="dropdown-header">Actions:</div>
+            <a class="dropdown-item" href="#">Update inventory</a>
+            <a class="dropdown-item" href="#">Run tool</a>
             <div class="dropdown-divider"></div>
             <div class="dropdown-header">Tools:</div>
-            <a class="dropdown-item" href="#">Run tool</a>
-            <a class="dropdown-item" href="#">Schedule jobs</a>
+            <a class="dropdown-item" href="#">Edit device</a>
+            <a class="dropdown-item" href="#">Delete device</a>
         </div>
       </div>
     </div>
