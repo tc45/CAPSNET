@@ -8,7 +8,11 @@ from appsettings.models import Credential
 def all_devices(request):
     devices = Device.objects.all()
     credentials = Credential.objects.all()
-    return render(request, "devices/all_devices.html", {'devices': devices, 'credentials': credentials})
+    context = {
+        'devices': devices,
+        'credentials': credentials
+    }
+    return render(request, "devices/all_devices.html", context)
 
 
 def add_device(request):

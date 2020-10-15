@@ -79,7 +79,6 @@ class Device(TrackedModel):
     device_type = models.ForeignKey(DeviceType, blank=True, on_delete=models.PROTECT)
     notes = models.TextField(default=None, blank=True, null=True, help_text="Notes")
 
-
     def __str__(self):
         device_name = ""
         if self.hostname:
@@ -90,6 +89,9 @@ class Device(TrackedModel):
             device_name = self.management_ip
 
         return device_name
+
+    def common_name(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         if self.changed is None:  # first time new object only
@@ -102,7 +104,7 @@ class Inventory(models.Model):
     device = models.ForeignKey(Device, related_name="inventory_task", blank=False, null=False, on_delete=models.CASCADE,
                                help_text="Device")
     part_id = models.CharField(max_length=100, help_text="Part number", blank=True)
-    notes = models.TextField(default=None, blank=True, null=True, help_text="Notes")
+    notes = models.CharField(max_length=100, default=None, blank=True, null=True, help_text="Notes")
 
     def __str__(self):
         device_name = ""

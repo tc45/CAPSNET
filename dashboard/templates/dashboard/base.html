@@ -69,8 +69,6 @@
             <a class="collapse-item" href="{% url 'devices:add_device' %}">Add New Device</a>
             <a class="collapse-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
             <a class="collapse-item" href="{% url 'devices:manage_device' %}">Manage Devices</a>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
           </div>
         </div>
       </li>
@@ -86,10 +84,10 @@
         </a>
         <div id="collapseTemplates" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{% url 'templates:templates_home' %}">Templates Home</a>
-            <a class="collapse-item" href="{% url 'templates:templates_home' %}">Add template</a>
-            <a class="collapse-item" href="{% url 'templates:templates_home' %}">Add form</a>
-            <a class="collapse-item" href="{% url 'templates:templates_home' %}">Manage forms</a>
+            <a class="collapse-item" href="{% url 'apptemplates:templates_home' %}">Templates Home</a>
+            <a class="collapse-item" href="{% url 'apptemplates:templates_home' %}">Add template</a>
+            <a class="collapse-item" href="{% url 'apptemplates:templates_home' %}">Add form</a>
+            <a class="collapse-item" href="{% url 'apptemplates:templates_home' %}">Manage forms</a>
           </div>
         </div>
       </li>
@@ -147,7 +145,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'settings:settings_home' %}">
+        <a class="nav-link" href="{% url 'appsettings:settings_home' %}">
           <i class="fas fa-fw fa-cogs"></i>
           <span>Settings</span></a>
       </li>
