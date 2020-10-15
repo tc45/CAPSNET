@@ -24,6 +24,8 @@ admin.site.index_title = "Admin Page"
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # API URLs
+    path('api/', include('API.urls')),
     # Dashboard URLs
     path('', include('dashboard.urls')),
     # Devices URLs

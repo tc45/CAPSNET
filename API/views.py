@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from .serializers import CredentialSerializer, DeviceSerializer, TemplateSerializer, TemplateGroupSerializer, ConnectionProtocolSerializer
+from .serializers import CredentialSerializer, DeviceSerializer, TemplateSerializer, TemplateGroupSerializer, \
+    ConnectionProtocolSerializer, InventorySerializer, DeviceTypeSerializer
 from apptemplates.models import Template, TemplateGroup
 from appsettings.models import Credential
-from devices.models import Device, ConnectionProtocol
+from devices.models import Device, ConnectionProtocol, Inventory, DeviceType
 
 
 
@@ -97,3 +98,25 @@ class ConnectionProtocolViewSet(AutoSetDocstrings, viewsets.ModelViewSet):
 
     class Meta:
         model = ConnectionProtocol
+
+
+class InventoryViewSet(AutoSetDocstrings, viewsets.ModelViewSet):
+    """
+    [API usage directions]
+    """
+    queryset = Inventory.objects.all()
+    serializer_class = InventorySerializer
+
+    class Meta:
+        model = Inventory
+
+
+class DeviceTypeViewSet(AutoSetDocstrings, viewsets.ModelViewSet):
+    """
+    [API usage directions]
+    """
+    queryset = DeviceType.objects.all()
+    serializer_class = DeviceTypeSerializer
+
+    class Meta:
+        model = DeviceType

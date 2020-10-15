@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'appsettings',
     'reports',
     'tools',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -17,7 +17,8 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
-from .views import CredentialViewSet, DeviceViewSet, ConnectionProtocolViewSet, TemplateViewSet, TemplateGroupViewSet
+from .views import CredentialViewSet, DeviceViewSet, ConnectionProtocolViewSet, TemplateViewSet, TemplateGroupViewSet, \
+    DeviceTypeViewSet, InventoryViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -27,6 +28,8 @@ router.register(r'device', DeviceViewSet)
 router.register(r'template', TemplateViewSet)
 router.register(r'template_group', TemplateGroupViewSet)
 router.register(r'connection_protocol', ConnectionProtocolViewSet)
+router.register(r'inventory', InventoryViewSet)
+router.register(r'device_type', DeviceTypeViewSet)
 
 
 # app_name = 'API'
