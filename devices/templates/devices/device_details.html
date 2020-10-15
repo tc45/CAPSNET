@@ -1,13 +1,66 @@
 {% extends "dashboard/base.html" %}
 
-{% block title %}Device Details - {{ device.seed_host_or_ip }}{% endblock %}
+{% block title %}Device Details - {{ device.management_ip }}{% endblock %}
 
 {% block content %}
-    <h3>{{ device.seed_host_or_ip }}</h3>
-    {{ device.hostname }}<br>
-    {{ device.vendor }}<br>
-    {{ device.model }}<br>
-    {{ device.software }}<br>
-    {{ device.device_type }}
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Device Details</h6>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Device Actions:</div>
+            <a class="dropdown-item" href="#">Add Device</a>
+            <a class="dropdown-item" href="#">Device Discovery</a>
+            <a class="dropdown-item" href="#">Manage Devices</a>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-header">Tools:</div>
+            <a class="dropdown-item" href="#">Run tool</a>
+            <a class="dropdown-item" href="#">Schedule jobs</a>
+        </div>
+      </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <table cellpadding=5>
+            <tr>
+                <td>Management IP</td>
+                <td><b>{{ device.management_ip }}</b></td>
+            </tr>
+            <tr>
+                <td>Hostname</td>
+                <td><b>{{ device.hostname }}</b></td>
+            </tr>
+            <tr>
+                <td>Vendor</td>
+                <td><b>{{ device.vendor }}</b></td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td><b>{{ device.model }}</b></td>
+            </tr>
+            <tr>
+                <td>Software Version</td>
+                <td><b>{{ device.software }}</b></td>
+            </tr>
+            <tr>
+                <td>Device Type</td>
+                <td><b>{{ device.device_type }}</b></td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    </div>
+            <a href="{% url 'devices:all_devices' %}">Back to All Devices</a>
+
+
+
 
 {% endblock %}

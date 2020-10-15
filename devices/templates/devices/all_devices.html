@@ -1,18 +1,67 @@
 {% extends "dashboard/base.html" %}
 
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+{% endblock %}
+
     {% block title %}CAPSNET - Devices home{% endblock %}
 
 {% block content %}
     <h3>Devices home</h3>
-    <br><br>
-    <h5>Devices</h5>
-    {% for device in devices %}
-        <a href="{% url 'devices:device_details' device.id %}">{{ device.seed_host_or_ip }}</a><br>
-    {% endfor %}
-    <br><br>
-    <h5>Credentials</h5>
-    {% for credential in credentials %}
-        <a href="">{{ credential.username }}/{{ credential.password }}</a><br>
-    {% endfor %}
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All devices</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Management IP</th>
+                      <th>Hostname</th>
+                      <th>Vendor</th>
+                      <th>Model</th>
+                      <th>Software</th>
+                      <th>Connection Protocol</th>
+                      <th>Device Type</th>
+                        <th>Serial Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for device in devices %}
+                        <tr>
+                            <td><a href="{% url 'devices:device_details' device.id %}">{{ device.management_ip }}</a></td>
+                            <td><a href="{% url 'devices:device_details' device.id %}">{{ device.hostname }}</a></td>
+                            <td>{{ device.vendor }}</td>
+                            <td>{{ device.model }}</td>
+                            <td>{{ device.software }}</td>
+                            <td>{{ device.connection_protocol }}</td>
+                            <td>{{ device.device_type }}</td>
+                            <td>{{ device.device_type }}</td>
+                        </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
 
 {% endblock %}
