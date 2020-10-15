@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from . import views
 from django.conf import settings
 
-app_name = 'settings'
+app_name = 'appsettings'
 
 urlpatterns = [
     path('', views.settings_home, name="settings_home"),

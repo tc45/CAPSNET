@@ -73,8 +73,8 @@ class Device(TrackedModel):
     model = models.CharField(max_length=100, blank=True, help_text="Device model name")
     software = models.CharField(max_length=100, blank=True, help_text="Device software version")
     device_type = models.CharField(max_length=100, blank=True, help_text="Device softare filename")
-    connection_protocol = models.ForeignKey(ConnectionProtocol, on_delete=models.PROTECT, blank=True, help_text="Choose connection protocol/port")
-    credential = models.ForeignKey(Credential, on_delete=models.PROTECT, blank=True,
+    connection_protocol = models.ForeignKey(ConnectionProtocol, on_delete=models.PROTECT, blank=True, default=None, help_text="Choose connection protocol/port")
+    credential = models.ForeignKey(Credential, on_delete=models.PROTECT, blank=True,default=None,
                                             help_text="Choose authentication username")
     device_type = models.ForeignKey(DeviceType, blank=True, on_delete=models.PROTECT)
     notes = models.TextField(default=None, blank=True, null=True, help_text="Notes")
@@ -98,7 +98,7 @@ class Device(TrackedModel):
         super().save(*args, **kwargs)
 
 
-class Inventory(TrackedModel):
+class Inventory(models.Model):
     device = models.ForeignKey(Device, related_name="inventory_task", blank=False, null=False, on_delete=models.CASCADE,
                                help_text="Device")
     part_id = models.CharField(max_length=100, help_text="Part number", blank=True)
