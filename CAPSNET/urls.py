@@ -26,6 +26,8 @@ urlpatterns = [
 
     #Auth
     path('signup/', dashboard_views.signupuser, name="signupuser"),
+    path('logout/', dashboard_views.logoutuser, name="logoutuser"),
+    path('login/', dashboard_views.loginuser, name="loginuser"),
 
     # API URLs
     path('api/', include('API.urls')),
