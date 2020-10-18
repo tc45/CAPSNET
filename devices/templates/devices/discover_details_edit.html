@@ -1,0 +1,134 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="{% static '/dashboard/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Discover Device - Details{% endblock %}
+
+{% block content %}
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Seeded Device Details</h6>
+
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+      <form class="user" method="POST">
+        <div class="form-group">
+        <label>Seed hostname or IP address:</label>
+          <input type="text" class="form-control form-control-user" value={{ seed.seed_host_or_ip }} name="seed_host_or_ip" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+        </div>
+        <div class="form-group">
+            <label>Enabled:</label>
+            {% if seed.enable is True %}
+                <input checked type="checkbox" class="form-control form-control-user" value={{ seed.enable }} name="enable" id="exampleInputPassword" placeholder="Password">
+            {% else %}
+                <input type="checkbox" class="form-control form-control-user" value={{ seed.enable }} name="enable" id="exampleInputPassword" placeholder="Password">
+            {% endif %}
+
+        </div>
+        <div class="form-group">
+
+            <label for="credentials">Seed credentials:</label>
+            <select id="credentials" name="credentials">
+            <option value="">None selected</option>
+            {% for credential in credentials %}
+                {% if credential.id == seed.credential_id %}
+                    <option value="{{ credential.username }}" selected>{{ credential.username }}</option>
+                {% else %}
+                    <option value="{{ credential.username }}">{{ credential.username }}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label><b>Created</b> Date/Time: {{ seed.created }}</label>
+        </div>
+        <div class="form-group">
+            <label><b>Changed</b> Date/Time: {{ seed.changed }}</label>
+        </div>
+        <div class="form-group">
+            <label><b>Discovered</b> Date/Time: {{ seed.discovered }}</label>
+        </div>
+        <div class="form-group">
+            <label>Ping status</label>
+            <input type="textbox" class="form-control form-control-user" value="" name="ping_status" placeholder="Ping Status">
+        </div>
+        <div class="form-group">
+            <label>VTY status</label>
+            <input type="textbox" class="form-control form-control-user" value="" name="vty_status" placeholder="VTY Status">
+        </div>
+          <div class="form-group">
+            <label>SNMP status</label>
+            <input type="textbox" class="form-control form-control-user" value="" name="snmp_status" placeholder="SNMP Status">
+        </div>
+        <a href="#" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+            </span>
+            <span class="text">Save</span>
+        </a>
+        <a href="{% url 'devices:discover_details' seed.id %}" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-backward"></i>
+            </span>
+            <span class="text">Cancel</span>
+        </a>
+        <a href="#" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-trash"></i>
+            </span>
+            <span class="text">Delete</span>
+        </a>
+      </form>
+    </div>
+
+
+
+
+
+        <form method="POST">
+        <table cellpadding=5>
+            <tr>
+                <td>ID</td>
+                <td><b>{{ seed.id }}</b></td>
+            </tr>
+            <tr>
+                <td>Seed Address</td>
+                <td><b>{{ seed.seed_host_or_ip }}</b></td>
+            </tr>
+            <tr>
+                <td>Enabled</td>
+                <td><b>{{ seed.enable }}</b></td>
+            </tr>
+            <tr>
+                <td>Created Date</td>
+                <td><b>{{ seed.created.date }}</b></td>
+            </tr>
+            <tr>
+                <td>Discovered</td>
+                <td><b>{{ seed.discovered.date }}</b></td>
+            </tr>
+            <tr>
+                <td>Seeded Credential</td>
+                <td><b>{{ seed.credential }}</b></td>
+            </tr>
+        </table>
+        </form>
+
+    </div>
+
+    </div>
+            <a href="{% url 'devices:discover_devices' %}"><i class="fa fa-backward"></i>&nbsp;Back to Discover Devices</a>
+
+
+
+
+{% endblock %}

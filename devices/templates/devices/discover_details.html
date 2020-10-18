@@ -1,0 +1,68 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="{% static '/dashboard/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Discover Device - Details{% endblock %}
+
+{% block content %}
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Seeded Device Details</h6>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header">Tools:</div>
+            <a class="dropdown-item" href="{% url 'devices:discover_details_edit' seed.id %}">Edit seed</a>
+            <a class="dropdown-item" href="#">Delete seed</a>
+        </div>
+      </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <table cellpadding=5>
+            <tr>
+                <td>ID</td>
+                <td><b>{{ seed.id }}</b></td>
+            </tr>
+            <tr>
+                <td>Seed Address</td>
+                <td><b>{{ seed.seed_host_or_ip }}</b></td>
+            </tr>
+            <tr>
+                <td>Enabled</td>
+                <td><b>{{ seed.enable }}</b></td>
+            </tr>
+            <tr>
+                <td>Created Date</td>
+                <td><b>{{ seed.created.date }}</b></td>
+            </tr>
+            <tr>
+                <td>Discovered</td>
+                <td><b>{{ seed.discovered.date }}</b></td>
+            </tr>
+            <tr>
+                <td>Seeded Credential</td>
+                <td><b>{{ seed.credential }}</b></td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    </div>
+    <a href="{% url 'devices:discover_devices' %}"><i class="fa fa-backward"></i>&nbsp;Back to Discover Devices</a>
+
+
+
+
+{% endblock %}

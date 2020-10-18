@@ -17,47 +17,63 @@
     <!-- Dropdown Card Example -->
     <div class="card shadow mb-4">
 
-    <!-- Card Body -->
-    <div class="card-body">
+        <!-- Card Body -->
+        <div class="card-body">
 
-        <div class="col-8 col-xl-10">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Add new Device</h5>
-                    <h6 class="card-subtitle text-muted">Add device to seed for discovery.</h6>
-                </div>
-                <div class="card-body">
+            <div class="col-8 col-xl-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Add new Device</h5>
+                        <h6 class="card-subtitle text-muted">Add device to seed for discovery.</h6>
+                    </div>
+                    <div class="card-body">
 
                         <h5>{{ error }}</h5>
-                        <div class="form-group row">
-
-                        <form method = "POST">
-                        {% csrf_token %}
+                        <form method = "POST" id="add_device" %}">
+                            <div class="form-group row">
+                            {% csrf_token %}
                             {{ form.as_p }}
+                            </div>
+                            <div class="form-group row">
+                            <b>*Leave credential blank to scan all credentials.</b>
+                            </div>
 
-                                <b>*Leave credential blank to scan all credentials.</b>
 
-                        </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10 ml-sm-auto">
 
 
-                        <div class="form-group row">
-                            <div class="col-sm-10 ml-sm-auto">
-                                <button type="submit" class="btn btn-primary">Add Device</button>
-                                <button type="button" class="btn btn-primary" onClick="window.location.href='{% url 'devices:all_devices' %}';">Cancel</button>
+
+
+
+
+                                    <button type="submit" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Add Device</span>
+                                    </button>
+                                     <a href="{% url 'devices:all_devices' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-backward"></i>
+                                        </span>
+                                        <span class="text">Cancel</span>
+                                    </a>
+
+                                </div>
 
                             </div>
 
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+
+
         </div>
 
-
     </div>
-
-    </div>
-            <a href="{% url 'devices:all_devices' %}">  Back to All Devices</a>
+            <a href="{% url 'devices:all_devices' %}"><i class="fa fa-backward"></i>&nbsp;Back to All Devices</a>
 
 
 

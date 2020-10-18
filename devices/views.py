@@ -88,7 +88,39 @@ def add_device(request):
 
 @login_required()
 def discover_devices(request):
-    return render(request, "devices/discover_devices.html")
+    if request.method == 'GET':
+        seeds = SeedDevice.objects.all()
+        context = {
+            'seeds': seeds
+        }
+        return render(request, "devices/discover_devices.html", context)
+
+
+
+@login_required()
+def discover_details(request, seeddevice_pk):
+    if request.method == 'GET':
+        # Show individual seed details
+        seed = get_object_or_404(SeedDevice, pk=seeddevice_pk)
+        credentials = Credential.objects.all()
+        context = {
+            'seed': seed,
+            'credentials': credentials
+        }
+        return render(request, 'devices/discover_details.html', context)
+
+
+@login_required()
+def discover_details_edit(request, seeddevice_pk):
+    if request.method == 'GET':
+        # Show individual seed details
+        seed = get_object_or_404(SeedDevice, pk=seeddevice_pk)
+        credentials = Credential.objects.all()
+        context = {
+            'seed': seed,
+            'credentials': credentials
+        }
+        return render(request, 'devices/discover_details_edit.html', context)
 
 
 @login_required()
@@ -111,32 +143,35 @@ def validIPAddress(IP: str) -> str:
         return "Invalid"
 
 
-def validCIDR(IP :str) -> str:
+def validCIDR(IP : str) -> str:
     valid_return = False
-    protocol = ""
+    output = {}
+
     # Replace backslash with forward slash
     value = IP.replace("\\", "/")
 
     if "/" in value:
         # Split string into CIDR and IP
         split = value.split("/")
+        output['ip_address'] = split[0]
+        output['cidr'] = split[1]
         # Check if first of string has IPv4 address
-        if validIPAddress(split[0]) == "IPv4":
+        if validIPAddress(output['ip_address']) == "IPv4":
             # Check if back of string has d digit less than or equal to 32
-            if int(split[1]) <= 32:
+            if int(output['cidr']) <= 32:
                 valid_return = True
-                protocol = "IPv4"
+                output['protocol'] = "IPv4"
         # Check if first of string has IPv4 address
-        elif validIPAddress(split[0]) == "IPv6":
+        elif validIPAddress(output['ip_address']) == "IPv6":
             # Check if back of string has d digit less than or equal to 32
-            if int(split[1]) <= 128:
+            if int(output['cidr']) <= 128:
                 valid_return = True
-                protocol = "IPv6"
+                output['protocol'] = "IPv6"
 
     if valid_return:
-        return protocol, split[0], split[1]
+        return output
     else:
-        return "", "", ""
+        return False
 
 
 

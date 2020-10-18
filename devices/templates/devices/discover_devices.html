@@ -1,0 +1,109 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block stylesets %}
+
+  <!-- Custom styles for this page -->
+  <link href="{% static 'dashboard/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+    {% block title %}Discover Devices{% endblock %}
+
+{% block content %}
+    <h3>Discover Devices</h3>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Seeded device addresses</h6>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Device Actions:</div>
+            <a class="dropdown-item" href="{% url 'devices:add_device' %}">Add Device</a>
+            <a class="dropdown-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
+            <a class="dropdown-item" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-header">Tools:</div>
+            <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Run tool</a>
+            <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Schedule jobs</a>
+        </div>
+      </div>
+    </div>
+
+        <!-- Start card body -->
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>Seed address</th>
+                        <th>Seeded Credentials</th>
+                        <th>Enabled</th>
+                        <th>Added Date/Time</th>
+                        <th>Discovered Date/Time</th>
+                        <th>Ping Reply</th>
+                        <th>SSH/Telnet Response</th>
+                        <th>SNMP Credential</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for seed in seeds %}
+                        <tr>
+                            <td><a href="{% url 'devices:discover_details' seed.id %}">{{ seed.seed_host_or_ip }}</a></td>
+                            <td>{{ seed.credential }}</td>
+                            <td>{{ seed.enable }}</td>
+                            <td>{{ seed.created.date }}</td>
+                            <td>{{ seed.discovered.date }}</td>
+                            <td>TODO</td>
+                            <td>TODO</td>
+                            <td>TODO</td>
+                            <td>TODO</td>
+                            <td>
+
+                          <!-- Action dropdown -->
+                          <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                  <div class="dropdown-header">Device Actions:</div>
+                                    <a class="dropdown-item" href="{% url 'devices:discover_details_edit' seed.id %}">Edit seed</a>
+                                    <a class="dropdown-item" href="{% url 'devices:discover_details' seed.id %}">Seed Details</a>
+                                    <a class="dropdown-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
+                                    <a class="dropdown-item" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-header">Tools:</div>
+                                    <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Run tool</a>
+                                    <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Schedule jobs</a>
+                                </div>
+                              </div>
+                            </td>
+                        </tr>
+
+                      {% endfor %}
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        <!-- end card body -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Page level plugins -->
+  <script src="{% static 'dashboard/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'dashboard/js/demo/datatables-demo.js' %}"></script>
+
+{% endblock %}

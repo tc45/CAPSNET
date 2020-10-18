@@ -58,8 +58,15 @@ class SeedDevice(TrackedModel):
         return str(self.seed_host_or_ip)
 
 
+class DeviceGroups(TrackedModel):
+    groupname = models.CharField(max_length=100, blank=False, help_text="Device group name")
+
+
+
 class Device(TrackedModel):
     enable = models.BooleanField(default=True, help_text="Enable/Disable scanning of this device")
+    groupname = models.ForeignKey(DeviceGroups, on_delete=models.PROTECT, null=True,
+                                  blank=True, default=None, help_text="Device group")
     management_ip = models.GenericIPAddressField(unique=True, default=None, max_length=15, blank=False, null=False, help_text="Management IP")
     hostname = models.CharField(default=None, max_length=256, blank=True, null=True, help_text="Device HOSTNAME")
     vendor = models.CharField(max_length=100, blank=True, help_text="Device vendor name")
