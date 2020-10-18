@@ -1,9 +1,10 @@
 from django.forms import ModelForm
-from .models import Device, Credential
+from .models import SeedDevice
+from appsettings.models import Credential
 
 
-class AddNewDeviceForm(ModelForm):
+class SeedDeviceForm(ModelForm):
     class Meta:
-        model = Device
-        fields = ['management_ip', 'hostname']
+        model = SeedDevice
+        fields = ['seed_host_or_ip', 'credential']
 

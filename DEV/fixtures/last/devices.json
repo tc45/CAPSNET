@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "type_name": "Router",
-        "description": null
+        "description": "Router templates"
     }
 },
 {
@@ -12,7 +12,23 @@
     "pk": 2,
     "fields": {
         "type_name": "Switch",
-        "description": null
+        "description": "Switch templates"
+    }
+},
+{
+    "model": "devices.devicetype",
+    "pk": 3,
+    "fields": {
+        "type_name": "Global",
+        "description": "Global Templates"
+    }
+},
+{
+    "model": "devices.devicetype",
+    "pk": 4,
+    "fields": {
+        "type_name": "VPN",
+        "description": "VPN Templates"
     }
 },
 {
@@ -25,31 +41,55 @@
     }
 },
 {
-    "model": "devices.credential",
-    "pk": 1,
+    "model": "devices.connectionprotocol",
+    "pk": 2,
     "fields": {
-        "username": "admin",
-        "password": null,
-        "enable_pass": null,
-        "description": "Admin - 10/15/2020"
+        "protocol_name": "Telnet",
+        "protocol_port": 23,
+        "description": null
     }
 },
 {
-    "model": "devices.credential",
-    "pk": 2,
+    "model": "devices.connectionprotocol",
+    "pk": 3,
     "fields": {
-        "username": "manager",
-        "password": null,
-        "enable_pass": null,
-        "description": "1/1/93"
+        "protocol_name": "Telnet-2323",
+        "protocol_port": 2323,
+        "description": null
+    }
+},
+{
+    "model": "devices.seeddevice",
+    "pk": 4,
+    "fields": {
+        "created": "2020-10-18T15:02:07.825Z",
+        "changed": "2020-10-18T15:02:07.825Z",
+        "enable": true,
+        "seed_host_or_ip": "1.1.1.1",
+        "discovered": null,
+        "credential": 1,
+        "user": 1
+    }
+},
+{
+    "model": "devices.seeddevice",
+    "pk": 5,
+    "fields": {
+        "created": "2020-10-18T15:03:50.755Z",
+        "changed": "2020-10-18T15:03:50.755Z",
+        "enable": true,
+        "seed_host_or_ip": "1.1.1.3",
+        "discovered": null,
+        "credential": 1,
+        "user": 1
     }
 },
 {
     "model": "devices.device",
     "pk": 1,
     "fields": {
-        "created": "2020-10-15T13:18:22.687Z",
-        "changed": "2020-10-15T14:18:31.180Z",
+        "created": "2020-10-18T14:05:24.488Z",
+        "changed": "2020-10-18T14:05:24.488Z",
         "enable": true,
         "management_ip": "1.1.1.1",
         "hostname": "router1",
@@ -66,11 +106,11 @@
     "model": "devices.device",
     "pk": 2,
     "fields": {
-        "created": "2020-10-15T14:27:57.757Z",
-        "changed": "2020-10-15T14:27:57.757Z",
+        "created": "2020-10-18T14:05:45.093Z",
+        "changed": "2020-10-18T14:05:45.093Z",
         "enable": true,
         "management_ip": "1.1.1.2",
-        "hostname": "router2",
+        "hostname": "router1",
         "vendor": "Cisco",
         "model": "ISR4431",
         "software": "isr4431.bin",
@@ -84,11 +124,29 @@
     "model": "devices.device",
     "pk": 3,
     "fields": {
-        "created": "2020-10-15T14:28:18.391Z",
-        "changed": "2020-10-15T14:28:18.391Z",
+        "created": "2020-10-18T14:06:03.009Z",
+        "changed": "2020-10-18T14:06:03.009Z",
         "enable": true,
         "management_ip": "1.1.1.3",
         "hostname": "router3",
+        "vendor": "Cisco",
+        "model": "ISR4431",
+        "software": "isr4431.bin",
+        "connection_protocol": 2,
+        "credential": 1,
+        "device_type": 1,
+        "notes": ""
+    }
+},
+{
+    "model": "devices.device",
+    "pk": 4,
+    "fields": {
+        "created": "2020-10-18T14:08:30.551Z",
+        "changed": "2020-10-18T14:08:30.551Z",
+        "enable": true,
+        "management_ip": "1.1.1.4",
+        "hostname": "router4",
         "vendor": "Cisco",
         "model": "ISR4431",
         "software": "isr4431.bin",
@@ -100,28 +158,28 @@
 },
 {
     "model": "devices.device",
-    "pk": 4,
+    "pk": 5,
     "fields": {
-        "created": "2020-10-15T14:28:36.094Z",
-        "changed": "2020-10-15T14:28:36.094Z",
+        "created": "2020-10-18T14:08:52.484Z",
+        "changed": "2020-10-18T14:08:52.484Z",
         "enable": true,
-        "management_ip": "1.1.1.4",
-        "hostname": "router4",
+        "management_ip": "1.1.1.5",
+        "hostname": "router5",
         "vendor": "Cisco",
         "model": "ISR4431",
         "software": "isr4431.bin",
         "connection_protocol": 1,
-        "credential": 1,
+        "credential": 2,
         "device_type": 1,
         "notes": ""
     }
 },
 {
     "model": "devices.device",
-    "pk": 5,
+    "pk": 6,
     "fields": {
-        "created": "2020-10-15T14:29:24.730Z",
-        "changed": "2020-10-15T14:29:24.730Z",
+        "created": "2020-10-18T14:09:49.282Z",
+        "changed": "2020-10-18T14:10:05.913Z",
         "enable": true,
         "management_ip": "1.1.1.6",
         "hostname": "router6",
@@ -136,28 +194,10 @@
 },
 {
     "model": "devices.device",
-    "pk": 6,
-    "fields": {
-        "created": "2020-10-15T14:29:39.562Z",
-        "changed": "2020-10-15T14:29:39.562Z",
-        "enable": true,
-        "management_ip": "1.1.1.5",
-        "hostname": "router5",
-        "vendor": "Cisco",
-        "model": "ISR4431",
-        "software": "isr4431.bin",
-        "connection_protocol": 1,
-        "credential": 1,
-        "device_type": 1,
-        "notes": ""
-    }
-},
-{
-    "model": "devices.device",
     "pk": 7,
     "fields": {
-        "created": "2020-10-15T14:29:56.421Z",
-        "changed": "2020-10-15T14:29:56.421Z",
+        "created": "2020-10-18T14:10:29.639Z",
+        "changed": "2020-10-18T14:10:29.639Z",
         "enable": true,
         "management_ip": "1.1.1.7",
         "hostname": "router7",
@@ -165,7 +205,7 @@
         "model": "ISR4431",
         "software": "isr4431.bin",
         "connection_protocol": 1,
-        "credential": 1,
+        "credential": 2,
         "device_type": 1,
         "notes": ""
     }
@@ -174,8 +214,8 @@
     "model": "devices.device",
     "pk": 8,
     "fields": {
-        "created": "2020-10-15T14:44:49.006Z",
-        "changed": "2020-10-15T14:44:49.006Z",
+        "created": "2020-10-18T14:10:52.766Z",
+        "changed": "2020-10-18T14:10:52.766Z",
         "enable": true,
         "management_ip": "1.1.1.8",
         "hostname": "router8",
@@ -192,47 +232,11 @@
     "model": "devices.device",
     "pk": 9,
     "fields": {
-        "created": "2020-10-15T14:45:17.183Z",
-        "changed": "2020-10-15T14:45:17.183Z",
+        "created": "2020-10-18T14:11:07.604Z",
+        "changed": "2020-10-18T14:11:07.604Z",
         "enable": true,
         "management_ip": "1.1.1.9",
-        "hostname": "router9",
-        "vendor": "Cisco",
-        "model": "ISR4451",
-        "software": "isr4451.bin",
-        "connection_protocol": 1,
-        "credential": 1,
-        "device_type": 1,
-        "notes": ""
-    }
-},
-{
-    "model": "devices.device",
-    "pk": 10,
-    "fields": {
-        "created": "2020-10-15T14:45:36.927Z",
-        "changed": "2020-10-15T14:45:36.927Z",
-        "enable": true,
-        "management_ip": "1.1.1.10",
-        "hostname": "router10",
-        "vendor": "Cisco",
-        "model": "ISR4451",
-        "software": "isr4451.bin",
-        "connection_protocol": 1,
-        "credential": 1,
-        "device_type": 1,
-        "notes": ""
-    }
-},
-{
-    "model": "devices.device",
-    "pk": 11,
-    "fields": {
-        "created": "2020-10-15T14:46:07.752Z",
-        "changed": "2020-10-15T14:46:07.752Z",
-        "enable": true,
-        "management_ip": "1.1.1.11",
-        "hostname": "router11",
+        "hostname": "router1",
         "vendor": "Cisco",
         "model": "ISR4431",
         "software": "isr4431.bin",
@@ -244,19 +248,55 @@
 },
 {
     "model": "devices.device",
-    "pk": 12,
+    "pk": 10,
     "fields": {
-        "created": "2020-10-15T14:46:30.398Z",
-        "changed": "2020-10-15T14:46:30.398Z",
+        "created": "2020-10-18T14:11:24.157Z",
+        "changed": "2020-10-18T14:11:24.157Z",
         "enable": true,
-        "management_ip": "1.1.1.12",
+        "management_ip": "1.1.1.10",
+        "hostname": "router1",
+        "vendor": "Cisco",
+        "model": "ISR4431",
+        "software": "isr4431.bin",
+        "connection_protocol": 1,
+        "credential": 1,
+        "device_type": 1,
+        "notes": ""
+    }
+},
+{
+    "model": "devices.device",
+    "pk": 11,
+    "fields": {
+        "created": "2020-10-18T14:11:39.835Z",
+        "changed": "2020-10-18T14:11:39.835Z",
+        "enable": true,
+        "management_ip": "1.1.1.11",
         "hostname": "switch1",
         "vendor": "Cisco",
         "model": "9200",
         "software": "iosxe-9200.bin",
         "connection_protocol": 1,
         "credential": 1,
-        "device_type": 2,
+        "device_type": 1,
+        "notes": ""
+    }
+},
+{
+    "model": "devices.device",
+    "pk": 12,
+    "fields": {
+        "created": "2020-10-18T14:11:57.378Z",
+        "changed": "2020-10-18T14:11:57.378Z",
+        "enable": true,
+        "management_ip": "1.1.1.12",
+        "hostname": "switch2",
+        "vendor": "Cisco",
+        "model": "9200",
+        "software": "iosxe-9200.bin",
+        "connection_protocol": 1,
+        "credential": 1,
+        "device_type": 1,
         "notes": ""
     }
 },
@@ -264,35 +304,17 @@
     "model": "devices.device",
     "pk": 13,
     "fields": {
-        "created": "2020-10-15T14:46:44.980Z",
-        "changed": "2020-10-15T14:46:44.980Z",
+        "created": "2020-10-18T14:12:14.718Z",
+        "changed": "2020-10-18T14:12:14.718Z",
         "enable": true,
         "management_ip": "1.1.1.13",
-        "hostname": "switch2",
+        "hostname": "switch3",
         "vendor": "Cisco",
         "model": "9200",
-        "software": "iosxe-9200.bin",
+        "software": "isr4431.bin",
         "connection_protocol": 1,
         "credential": 1,
         "device_type": 2,
-        "notes": ""
-    }
-},
-{
-    "model": "devices.device",
-    "pk": 14,
-    "fields": {
-        "created": "2020-10-15T14:47:04.461Z",
-        "changed": "2020-10-15T14:47:04.461Z",
-        "enable": true,
-        "management_ip": "1.1.1.15",
-        "hostname": "vpn1",
-        "vendor": "Cisco",
-        "model": "ISR4431",
-        "software": "asa9.7.bin",
-        "connection_protocol": 1,
-        "credential": 1,
-        "device_type": 1,
         "notes": ""
     }
 },
@@ -301,8 +323,152 @@
     "pk": 1,
     "fields": {
         "device": 1,
-        "part_id": "MYPART1",
-        "notes": ""
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 2,
+    "fields": {
+        "device": 1,
+        "part_id": "part2",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 3,
+    "fields": {
+        "device": 1,
+        "part_id": "part3",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 4,
+    "fields": {
+        "device": 2,
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 5,
+    "fields": {
+        "device": 2,
+        "part_id": "part2",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 6,
+    "fields": {
+        "device": 2,
+        "part_id": "part3",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 7,
+    "fields": {
+        "device": 3,
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 8,
+    "fields": {
+        "device": 3,
+        "part_id": "part2",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 9,
+    "fields": {
+        "device": 3,
+        "part_id": "part3",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 10,
+    "fields": {
+        "device": 4,
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 11,
+    "fields": {
+        "device": 4,
+        "part_id": "part2",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 12,
+    "fields": {
+        "device": 4,
+        "part_id": "part3",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 13,
+    "fields": {
+        "device": 5,
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 14,
+    "fields": {
+        "device": 5,
+        "part_id": "part2",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 15,
+    "fields": {
+        "device": 5,
+        "part_id": "part3",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 16,
+    "fields": {
+        "device": 7,
+        "part_id": "part1",
+        "notes": null
+    }
+},
+{
+    "model": "devices.inventory",
+    "pk": 17,
+    "fields": {
+        "device": 7,
+        "part_id": "part2",
+        "notes": null
     }
 }
 ]

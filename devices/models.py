@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
+from appsettings.models import Credential
 
 # Abstract base classes
 class TrackedModel(models.Model):
@@ -45,24 +46,16 @@ class ConnectionProtocol(models.Model):
         return str(self.protocol_name) + " (port: " + str(self.protocol_port) + ")"
 
 
-class Credential(models.Model):
-    username = models.CharField(max_length=256, blank=False, null=False, help_text="Login username")
-    password = models.CharField(max_length=256, blank=True, null=True, help_text="Login password")
-    enable_pass = models.CharField(max_length=256, blank=True, null=True, help_text="Enable password (if needed)")
-    description = models.CharField(max_length=64, default="", blank=True, null=True, help_text="Short description")
+class SeedDevice(TrackedModel):
+    enable = models.BooleanField(default=True, help_text="Enable/disable seeding of this device")
+    seed_host_or_ip = models.CharField(unique=True, default=None, max_length=100, help_text="Enter IP or hostname to seed device")
+    discovered = models.DateTimeField(editable=False, blank=True, null=True, help_text="Date discovered")
+    credential = models.ForeignKey(Credential, on_delete=models.PROTECT, blank=True, default=None, null=True,
+                                            help_text="Choose authentication username")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        out_str = str(self.username)
-        if self.description not in ["", " ", None]:
-            out_str += " (" + str(self.description) + ")"
-        return out_str
-
-    def stored_password(self):
-        """
-        Only added this to have a "redacted field" to display in admin forms/lists
-        This implies that the saved password exists, when the change form shows blank fields
-        """
-        return "********"
+        return str(self.seed_host_or_ip)
 
 
 class Device(TrackedModel):
@@ -74,7 +67,7 @@ class Device(TrackedModel):
     software = models.CharField(max_length=100, blank=True, help_text="Device software version")
     device_type = models.CharField(max_length=100, blank=True, help_text="Device softare filename")
     connection_protocol = models.ForeignKey(ConnectionProtocol, on_delete=models.PROTECT, blank=True, default=None, help_text="Choose connection protocol/port")
-    credential = models.ForeignKey(Credential, on_delete=models.PROTECT, blank=True,default=None,
+    credential = models.ForeignKey(Credential, on_delete=models.PROTECT, blank=True, default=None,
                                             help_text="Choose authentication username")
     device_type = models.ForeignKey(DeviceType, blank=True, on_delete=models.PROTECT)
     notes = models.TextField(default=None, blank=True, null=True, help_text="Notes")

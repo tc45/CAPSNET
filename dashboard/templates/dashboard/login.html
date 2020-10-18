@@ -1,14 +1,7 @@
 {% extends "dashboard/base.html" %}
 
 {% block content %}
-    <h1>Login</h1>
-    <h2>{{ error }}</h2>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
 
       <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -20,7 +13,8 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Welcome Back! Login below.</h1>
+                      <h2>{{ error }}</h2>
                   </div>
                   <form class="user" method="POST">
                       {% csrf_token %}
@@ -36,7 +30,12 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                      <button type="submit">Login</button>
+                      <div class="form-group row">
+                            <div class="col-sm-10 ml-sm-auto">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+
+                        </div>
                     <hr>
                   </form>
                   <hr>
