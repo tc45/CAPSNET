@@ -44,3 +44,21 @@ class Credential(TrackedModel):
         This implies that the saved password exists, when the change form shows blank fields
         """
         return "********"
+
+
+class CustomerGeneral(TrackedModel):
+    CustomerName = models.CharField(max_length=256, unique=True, blank=False, null=False, help_text="Customer Name")
+    CustomerDescription = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Customer Description")
+    primaryContactFirstName = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Customer First Name")
+    primaryContactLastName = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Customer Last Name")
+    primaryContactEmail = models.EmailField(max_length=256, unique=False, blank=True, null=True, help_text="Contact Email")
+    primaryContactCellPhone = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Contact Cell Phone")
+    primaryContactWorkPhone = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Contact Work Phone")
+    primaryContactAddress1 = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Contact Address")
+    primaryContactAddress2 = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Contact Address2")
+    primaryContactCity = models.CharField(max_length=256, unique=False, blank=True, null=True, help_text="Contact City")
+
+    def __str__(self):
+        return str(self.CustomerName)
+
+

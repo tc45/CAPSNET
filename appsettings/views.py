@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Credential
-from .forms import AddVTYCredentialsForm
+from .models import Credential, CustomerGeneral
+from .forms import AddVTYCredentialsForm, CustomerGeneralForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import ProtectedError
 
@@ -10,12 +10,26 @@ from django.db.models import ProtectedError
 @login_required
 def settings_home(request):
     credentials = Credential.objects.all()
+    general = get_object_or_404(CustomerGeneral, pk=1)
+    error = ""
     context = {
         'credentials': credentials,
-        'page': 'General'
+        'general': general,
+        'page': 'General',
+        'error': error
     }
-
-    return render(request, 'settings/settings_home.html', context)
+    if request.method == "GET":
+        return render(request, 'settings/settings_home.html', context)
+    else:
+        # Instantiate a form using the returned data.
+        form = CustomerGeneralForm(request.POST)
+        if form.is_valid():
+            # Put this in DB, but don't save.
+            newform = form.save()
+            error = "Customer data saved successfully."
+        else:
+            error = "Error in the form.  Please correct and try again."
+        return render(request, "settings/settings_home.html", context)
 
 
 @login_required
@@ -56,7 +70,7 @@ def editvtycredential(request, credential_pk):
             'credential': credential,
             'error': error
         }
-        return render(request, 'settings/vty/edit/' + credential_pk , context)
+        return render(request, 'settings/vty/' + str(credential_pk) + 'edit/', context)
 
 
 @login_required
@@ -135,7 +149,10 @@ def validatecredentials(request):
             newform.user = request.user
             # Save the database if we received a valid input in the form.
             newform = newform.save()
-            error = "Added ID " + "(" + str(newform.id) + ")" + newform.username  +  \
+            description = ""
+            if newform.description:
+                description = " - (" + newform.description + ")"
+            error = "Added " + newform.username + description +  \
                     " to the database.  Add another, or close window."
             # Return error (or success) and ID of the new form
             return error, newform.id

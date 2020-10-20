@@ -22,6 +22,7 @@ from django.conf import settings
 app_name = 'appsettings'
 
 urlpatterns = [
+    # General Pages
     path('', views.settings_home, name="settings_home"),
     # VTY Pages
     path('vty/', views.addvtycredential, name="addvtycredential"),
@@ -31,4 +32,6 @@ urlpatterns = [
     path('snmp/', views.addsnmpcredential, name="addsnmpcredential"),
     path('snmp/<int:snmp_pk>/edit', views.editsnmpcredential, name="editsnmpcredential"),
     path('snmp/<int:snmp_pk>/delete', views.deletesnmpcredential, name='deletesnmpcredential'),
+
+
 ]

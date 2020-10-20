@@ -12,17 +12,28 @@ from django.contrib.auth.decorators import login_required
 def all_devices(request):
     devices = Device.objects.all()
     credentials = Credential.objects.all()
+    page = 'devices'
+    pagedetail = page + '.all_devices'
     context = {
         'devices': devices,
-        'credentials': credentials
+        'credentials': credentials,
+        'page': page,
+        'pagedetail': pagedetail
     }
     return render(request, "devices/all_devices.html", context)
 
 
 @login_required()
 def add_device(request):
+    page = 'devices'
+    pagedetail = page + '.add_device'
+    context = {
+        'form': SeedDeviceForm,
+        'page': page,
+        'pagedetail': pagedetail
+    }
     if request.method == 'GET':
-        return render(request, 'devices/add_device.html', {'form': SeedDeviceForm})
+        return render(request, 'devices/add_device.html', context)
     else:
         # Create error based on validation of IP/hostname.
         error = ""
@@ -83,15 +94,20 @@ def add_device(request):
             # Save the database if we received a valid input in the form.
             newform.save()
         # Return user to add_device page, with the form, and any errors(or successes)
-        return render(request, 'devices/add_device.html', {'form': SeedDeviceForm, 'error': error})
+        context['error'] = error
+        return render(request, 'devices/add_device.html', context)
 
 
 @login_required()
 def discover_devices(request):
     if request.method == 'GET':
         seeds = SeedDevice.objects.all()
+        page = 'devices'
+        pagedetail = page + '.discover_devices'
         context = {
-            'seeds': seeds
+            'seeds': seeds,
+            'page': page,
+            'pagedetail': pagedetail
         }
         return render(request, "devices/discover_devices.html", context)
 
@@ -125,15 +141,30 @@ def discover_details_edit(request, seeddevice_pk):
 
 @login_required()
 def manage_devices(request):
-    return render(request, "devices/manage_devices.html")
+    page = 'devices'
+    pagedetail = page + '.manage_devices'
+    context = {
+        'page': page,
+        'pagedetail': pagedetail
+    }
+    return render(request, "devices/manage_devices.html", context)
 
 
 @login_required()
 def device_details(request, device_pk):
     # Show individual device details
     device = get_object_or_404(Device, pk=device_pk)
+
+    page = 'devices'
+    pagedetail = page + '.all_devices'
+    context = {
+        'device': device,
+        'page': page,
+        'pagedetail': pagedetail
+    }
+
     if request.method == 'GET':
-        return render(request, 'devices/device_details.html', {'device': device})
+        return render(request, 'devices/device_details.html', context)
 
 
 def validIPAddress(IP: str) -> str:

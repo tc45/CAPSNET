@@ -50,7 +50,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{% url 'dashboard:dashboard' %}">
           <i class="fas fa-fw fa-tachometer-alt fa-2x"></i>
           <span>Dashboard</span></a>
@@ -62,18 +62,18 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Devices Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item {% if page == 'devices' %} active{% endif %}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDevice" aria-expanded="true" aria-controls="collapseDevice">
           <i class="fas fa-fw fa-database"></i>
           <span>Devices</span>
         </a>
-        <div id="collapseDevice" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseDevice" class="collapse{% if page == 'devices' %} show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Device components:</h6>
-            <a class="collapse-item" href="{% url 'devices:all_devices' %}">View Devices</a>
-            <a class="collapse-item" href="{% url 'devices:add_device' %}">Add New Device</a>
-            <a class="collapse-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
-            <a class="collapse-item" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
+            <a class="collapse-item{% if pagedetail == 'devices.all_devices' %} active{% endif %}" href="{% url 'devices:all_devices' %}">View Devices</a>
+            <a class="collapse-item{% if pagedetail == 'devices.add_device' %} active{% endif %}" href="{% url 'devices:add_device' %}">Add New Device</a>
+            <a class="collapse-item{% if pagedetail == 'devices.discover_devices' %} active{% endif %}" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
+            <a class="collapse-item{% if pagedetail == 'devices.manage_devices' %} active{% endif %}" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
           </div>
         </div>
       </li>
