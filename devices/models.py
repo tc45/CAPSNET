@@ -19,6 +19,7 @@ class TrackedModel(models.Model):
     def save(self, *args, **kwargs):
         self.pre_save()
         super().save(*args, **kwargs)
+        return self
 
     class Meta:
         abstract = True  # does not inherit
@@ -103,7 +104,8 @@ class Device(TrackedModel):
 class Inventory(models.Model):
     device = models.ForeignKey(Device, related_name="inventory_task", blank=False, null=False, on_delete=models.CASCADE,
                                help_text="Device")
-    part_id = models.CharField(max_length=100, help_text="Part number", blank=True)
+    part_id = models.CharField(max_length=100, help_text="Part number", blank=True, null=True)
+    type = models.CharField(max_length=100, help_text="Part type", blank=True, null=True)
     notes = models.CharField(max_length=100, default=None, blank=True, null=True, help_text="Notes")
 
     def __str__(self):
@@ -116,10 +118,5 @@ class Inventory(models.Model):
             device_name = self.device.management_ip
 
         return self.part_id + " (" + device_name + ")"
-
-
-class NewObject(models.Model):
-    test = models.CharField(max_length=100)
-
 
 

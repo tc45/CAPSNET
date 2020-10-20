@@ -6,6 +6,7 @@ from django.db.models import ProtectedError
 
 # Create your views here.
 
+
 @login_required
 def settings_home(request):
     credentials = Credential.objects.all()
@@ -15,6 +16,7 @@ def settings_home(request):
     }
 
     return render(request, 'settings/settings_home.html', context)
+
 
 @login_required
 def addvtycredential(request):
@@ -128,12 +130,12 @@ def validatecredentials(request):
     if valid_return:
         if form.is_valid():
             # Put this in DB, but don't save.
-            newform = form.save()
+            newform = form.save(commit=False)
             # Add user info to the form before saving.
             newform.user = request.user
             # Save the database if we received a valid input in the form.
             newform = newform.save()
-            error = "Added ID " + "(" + newform.id + ")"  +  \
+            error = "Added ID " + "(" + str(newform.id) + ")" + newform.username  +  \
                     " to the database.  Add another, or close window."
             # Return error (or success) and ID of the new form
             return error, newform.id

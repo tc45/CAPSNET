@@ -19,6 +19,7 @@ class TrackedModel(models.Model):
     def save(self, *args, **kwargs):
         self.pre_save()
         super().save(*args, **kwargs)
+        return self
 
     class Meta:
         abstract = True  # does not inherit
