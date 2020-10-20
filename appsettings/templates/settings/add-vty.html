@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <title>CAPSNET - Credentials (Add VTY)</title>
+    <link rel="icon" href="{% static 'dashboard/Logo.png' %}">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'dashboard/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+
+  <link href="{% static 'dashboard/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+
+        <!-- Card Body -->
+        <div class="card-body">
+
+            <div class="col-12 col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Add VTY Credential</h5>
+                        <h6 class="card-subtitle text-muted">Add username and password to VTY list. Username and VTY password required.</h6>
+                    </div>
+                    <div class="card-body">
+
+                        <h5>{{ error }}</h5>
+                        <form method = "POST" id="add_device">
+                            <div class="form-group row">
+                            {% csrf_token %}
+                            <form class="form-horizontal" method="POST">
+                                <fieldset>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-md-12 control-label" for="test">Username</label>
+                                  <div class="col-md-12">
+                                  <input id="username" name="username" type="text" placeholder="Username" value="{{ credential.username }}" class="form-control input-md" required="">
+
+                                  </div>
+                                </div>
+                                    <div class="form-row">
+                                        <!-- Password input-->
+                                        <div class="form-group">
+                                          <label class="col-md-12 control-label" for="password1">VTY Password</label>
+                                          <div class="col-md-12">
+                                            <input id="password" name="password" type="password" placeholder="VTY Password" class="form-control input-md" required="" value="{{ credential.password }}">
+
+                                          </div>
+                                        </div>
+
+                                        <!-- Password input-->
+                                        <div class="form-group">
+                                          <label class="col-md-12 control-label" for="ConfirmPass">Confirm Password</label>
+                                          <div class="col-md-12">
+                                            <input id="password2" name="password2" type="password" placeholder="Confirm Password" class="form-control input-md" required="" value="{{ credential.password }}">
+
+                                          </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-row">
+                                        <!-- Enable Password input 1-->
+                                        <div class="form-group">
+                                          <label class="col-md-12 control-label" for="enable_pass">Enable Password</label>
+                                          <div class="col-md-12">
+                                            <input id="enable_pass" name="enable_pass" type="password" placeholder="Enable Password" class="form-control input-md" value="{{ credential.enable_pass }}">
+
+                                          </div>
+                                        </div>
+
+                                        <!-- Enable Password input 2-->
+                                        <div class="form-group">
+                                          <label class="col-md-12 control-label" for="enablepassword2">Confirm Password</label>
+                                          <div class="col-md-12">
+                                            <input id="enablepassword2" name="enablepassword2" type="password" placeholder="Confirm Password" class="form-control input-md" value="{{ credential.enable_pass }}">
+
+                                          </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Enable Password input 2-->
+                                    <div class="form-group">
+                                      <label class="col-md-12 control-label" for="ConfirmPass">Description</label>
+                                      <div class="col-md-12">
+                                        <input id="description" name="description" type="" placeholder="Description" class="form-control input-md" value="{{ credential.description }}">
+
+                                        </div>
+                                    </div>
+                                    {% if credential.created %}
+
+                                    <div class="form-group">
+                                      <label class="col-md-12 control-label" for="ConfirmPass">Created: {{ credential.created }}</label>
+                                        <label class="col-md-12 control-label" for="ConfirmPass">Last changed: {{ credential.changed }}</label>
+
+                                    </div>
+                                    {% endif %}
+                                <!-- Button (Double) -->
+                                <div class="form-group">
+                                  <div class="col-md-8">
+                                    <button type="submit" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Save username</span>
+                                    </button>
+                                   <a href="JavaScript:window.close()" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-backward"></i>
+                                        </span>
+                                        <span class="text">Cancel and close</span>
+                                    </a>
+                                  </div>
+                                </div>
+
+                                </fieldset>
+                                </form>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

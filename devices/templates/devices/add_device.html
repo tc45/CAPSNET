@@ -29,7 +29,7 @@
                     <div class="card-body">
 
                         <h5>{{ error }}</h5>
-                        <form method = "POST" id="add_device" %}">
+                        <form method = "POST" id="add_device">
                             <div class="form-group row">
                             {% csrf_token %}
                             {{ form.as_p }}
@@ -41,11 +41,6 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-10 ml-sm-auto">
-
-
-
-
-
 
                                     <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">

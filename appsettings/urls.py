@@ -23,4 +23,12 @@ app_name = 'appsettings'
 
 urlpatterns = [
     path('', views.settings_home, name="settings_home"),
+    # VTY Pages
+    path('vty/', views.addvtycredential, name="addvtycredential"),
+    path('vty/<int:credential_pk>/edit', views.editvtycredential, name="editvtycredential"),
+    path('vty/<int:credential_pk>/delete', views.deletevtycredential, name='deletevtycredential'),
+    # SNMP Pages
+    path('snmp/', views.addsnmpcredential, name="addsnmpcredential"),
+    path('snmp/<int:snmp_pk>/edit', views.editsnmpcredential, name="editsnmpcredential"),
+    path('snmp/<int:snmp_pk>/delete', views.deletesnmpcredential, name='deletesnmpcredential'),
 ]

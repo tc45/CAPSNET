@@ -117,3 +117,9 @@ class Inventory(models.Model):
 
         return self.part_id + " (" + device_name + ")"
 
+
+class NewObject(models.Model):
+    test = models.CharField(max_length=100)
+
+
+

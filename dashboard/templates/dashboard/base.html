@@ -12,7 +12,11 @@
 
 
   <title>CAPSNET - {% block title %}{% endblock %}</title>
-    <link rel="icon" href="{% static 'dashboard/Logo.png' %}">
+    <link rel="icon" href="{% static 'dashboard/insight_small.png' %}">
+
+
+    <!-- Create block for stylesets to be added -->
+    {% block stylesets %}{% endblock %}
 
   <!-- Custom fonts for this template-->
 
@@ -22,8 +26,7 @@
   <!-- Custom styles for this template-->
   <link href="{% static 'dashboard/sb-admin-2.min.css' %}" rel="stylesheet">
 
-    <!-- Create block for stylesets to be added -->
-    {% block stylesets %}{% endblock %}
+
 
 </head>
 
@@ -39,7 +42,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard:dashboard' %}">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
-        <div class="sidebar-brand-text mx-3"><img src="{% static "dashboard/Logo.png" %}" width="50" height="50" class="d-inline-block align-top" alt="Logo">
+        <div class="sidebar-brand-text mx-3"><img src="{% static 'dashboard/insight_small.png' %}" width="40" height="40" class="d-inline-block align-top" alt="Logo">
             CAPSNET</div>
       </a>
 

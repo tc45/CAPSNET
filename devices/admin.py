@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Device, Credential, ConnectionProtocol, DeviceType, Inventory, SeedDevice
+from .models import Device, Credential, ConnectionProtocol, DeviceType, Inventory, SeedDevice, NewObject
 
 
 class InventoryInline(admin.TabularInline):
@@ -24,4 +24,5 @@ admin.site.register(ConnectionProtocol)
 admin.site.register(DeviceType)
 admin.site.register(Inventory)
 admin.site.register(SeedDevice)
+admin.site.register(NewObject)
 

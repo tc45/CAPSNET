@@ -47,10 +47,6 @@ def uialerts(request):
     return render(request, "dashboard/ui-alerts.html")
 
 
-def uialerts(request):
-    return render(request, "dashboard/ui-alerts.html")
-
-
 def logoutuser(request):
     if request.method == "POST":
         logout(request)

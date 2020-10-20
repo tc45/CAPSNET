@@ -65,23 +65,24 @@
                             <td>TODO</td>
                             <td>
 
-                          <!-- Action dropdown -->
-                          <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                  <div class="dropdown-header">Device Actions:</div>
-                                    <a class="dropdown-item" href="{% url 'devices:discover_details_edit' seed.id %}">Edit seed</a>
-                                    <a class="dropdown-item" href="{% url 'devices:discover_details' seed.id %}">Seed Details</a>
-                                    <a class="dropdown-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
-                                    <a class="dropdown-item" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="dropdown-header">Tools:</div>
-                                    <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Run tool</a>
-                                    <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Schedule jobs</a>
-                                </div>
-                              </div>
+                              <!-- Action dropdown -->
+                              <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                      <div class="dropdown-header">Device Actions:</div>
+                                        <a class="dropdown-item" href="{% url 'devices:discover_details_edit' seed.id %}">Edit seed</a>
+                                        <a class="dropdown-item" href="{% url 'devices:discover_details' seed.id %}">Seed Details</a>
+                                        <a class="dropdown-item" href="{% url 'devices:discover_devices' %}">Discover Devices</a>
+                                        <a class="dropdown-item" href="{% url 'devices:manage_devices' %}">Manage Devices</a>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="dropdown-header">Tools:</div>
+                                        <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Run tool</a>
+                                        <a class="dropdown-item" href="{% url 'tools:tools_home' %}">Schedule jobs</a>
+                                    </div>
+                                  </div>
+
                             </td>
                         </tr>
 
