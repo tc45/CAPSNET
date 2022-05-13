@@ -6,3 +6,4 @@ local_settings.py
 /static/
 db.sqlite3
 */migrations/
+/venv/
